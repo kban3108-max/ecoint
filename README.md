@@ -30,10 +30,12 @@ ECOINT_NOTGOOD is equal to -1 and is what the program returns when it's well not
 # Usage
 
 1. RTFM
+
 2. Include the header (duh)
 ```C
 #include "ecoint.h"
 ```
+
 3. Use the functions
 
 getelo (it's not elo but I named it getelo for clarity):
@@ -53,6 +55,7 @@ winnings (oh boy):
 int whoWins = winnings(&p_a, &p_b, &Pool, &win, K, M, P, D, MR, MP, &Tthres);
 ```
 Note from developer: winnings returns the status code (if it's 0 it ran successfully if it's -1 fix it), it mutates the variables you input
+
 4. Compile the code
 
 # License
