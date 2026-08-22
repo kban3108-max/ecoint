@@ -61,4 +61,5 @@ Note from developer: winnings returns the status code (if it's 0 it ran successf
 # License
 
 it's under 0BSD because not permissive = not good
+
 [LICENSE](LICENSE)
