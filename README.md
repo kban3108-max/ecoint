@@ -52,9 +52,12 @@ bool isThres = checkthres(K, M, P, Pool, &Tthres);
 ```
 winnings (oh boy):
 ```c
-int whoWins = winnings(&p_a, &p_b, &Pool, &win, K, M, P, D, MR, MP, &Tthres);
+// for p_a winning
+int whoWins = winnings(&p_a, &p_b, &Pool, &p_a, K, M, P, D, MR, MP, &Tthres);
+// for p_b winning
+int whoWins = winnings(&p_a, &p_b, &Pool, &p_b, K, M, P, D, MR, MP, &Tthres);
 ```
-Note from developer: winnings returns the status code (if it's 0 it ran successfully if it's -1 fix it), it mutates the variables you input
+Note from developer: winnings returns the status code (if it's 0 it ran successfully if it's -1 fix it), it mutates the variables you input.
 
 4. Compile the code
 
