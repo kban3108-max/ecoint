@@ -6,7 +6,7 @@ ecoint is a project that takes macroeconomics and turns it into a rating system
 
 there are multiple variables that control the behavior of ecoint
 
-P is the amount of points the user has
+P is the amount of points the user has (or in winnings() a controller)
 
 K has no meaning but is a controller 
 
@@ -17,6 +17,7 @@ D also has no meaning but deducts a certain percentage of points every transacti
 Pool is the total amount of points across all users (like how many dollars are printed, or else it wouldn't be an economy)
 
 T is like M and K
+
 Tthres is the threshold between where T negates and T adds, if T = Tthres then the output should be equal to P
 
 MP means 'Minimum Pool' (wow finally a meaning), which is the minimum amount of points Pool can have
