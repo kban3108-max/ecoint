@@ -8,9 +8,9 @@ there are multiple variables that control the behavior of ecoint
 
 P is the amount of points the user has (or in winnings() a controller)
 
-K has no meaning but is a controller 
+K has no meaning but is a controller
 
-M is like K 
+M is like K
 
 D also has no meaning but deducts a certain percentage of points every transaction (0.3 = 30% reduction, 0.7 = 70% reduction, etc)
 
