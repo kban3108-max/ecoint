@@ -12,7 +12,9 @@ K has no meaning but is a controller
 
 M is like K 
 
-D also has no meaning but deducts a certain percentage of points every transaction (0.3 = 30% reduction, 0.7 = 70% reduction, etc)
+D also has no meaning but controls deflation (idk how to explain it)
+
+DC means "D Controller" and it controls D in winnings (again idk how to explain it just read the code)
 
 Pool is the total amount of points across all users (like how many dollars are printed, or else it wouldn't be an economy)
 
@@ -30,7 +32,7 @@ ECOINT_NOTGOOD is equal to -1 and is what the program returns when it's well not
 
 # Usage
 
-1. RTFM
+1. RTFS (read the fucking source)
 
 2. Include the header (duh)
 ```C
@@ -54,9 +56,9 @@ bool isThres = checkthres(K, M, P, Pool, &Tthres);
 winnings (oh boy):
 ```c
 // for p_a winning
-int whoWins = winnings(&p_a, &p_b, &Pool, &p_a, K, M, P, D, MR, MP, &Tthres);
+int whoWins = winnings(&p_a, &p_b, &Pool, &p_a, K, M, P, D, DC, MR, MP, &Tthres);
 // for p_b winning
-int whoWins = winnings(&p_a, &p_b, &Pool, &p_b, K, M, P, D, MR, MP, &Tthres);
+int whoWins = winnings(&p_a, &p_b, &Pool, &p_b, K, M, P, D, DC, MR, MP, &Tthres);
 ```
 Note from developer: winnings returns the status code (if it's 0 it ran successfully if it's -1 fix it), it mutates the variables you input.
 

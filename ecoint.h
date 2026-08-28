@@ -21,20 +21,18 @@ static inline bool checkthres(double K, double M, double P, double Pool, double*
 	return fabs(tmp-P) < 1e-9;
 }
 
-static inline int winnings(double* p_a, double* p_b, double* Pool, double* win, double K, double M, double P, double D, int MR, int MP, double* Tthres) {
+static inline int winnings(double* p_a, double* p_b, double* Pool, double* win, double K, double M, double P, double D, double DC, int MR, int MP, double* Tthres) {
 	double diff = fabs(*p_a - *p_b);
 	if (win == p_a) {
-		double eb = fmax(MR, *p_b - diff);
-		double loss = fabs(*p_b - eb);
-		*p_b = eb;
-		*Pool = fmax(MP, *Pool - loss);
-		*p_a = *p_a * (1 - D);
+    diff *= 1 - D;
+    *p_a = fmax(MR, *p_a + (diff-(D*DC)));
+    *Pool = fmax(MP, *Pool - (D*DC));
+    *p_b = fmax(MR, *p_b - diff);
 	} else if (win == p_b) {
-		double ea = fmax(MR, *p_a - diff);
-		double loss = fabs(*p_a - ea);
-		*p_a = ea;
-		*Pool = fmax(MP, *Pool - loss);
-		*p_b = *p_b * (1 - D);
+    diff *= 1 - D;
+		*p_a = fmax(MR, *p_a - diff);
+		*Pool = fmax(MP, *Pool - (D*DC));
+		*p_b = fmax(MR, *p_b + (diff-(D*DC)));
 	} else {
 		return ECOINT_NOTGOOD;
 	}
