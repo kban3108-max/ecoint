@@ -1,10 +1,3 @@
-/* This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at https://mozilla.org/MPL/2.0/.
- *
- * Copyright (c) 2026 kban3108-max
-*/
-
 #ifndef ECOINT_H
 #define ECOINT_H
 
@@ -37,7 +30,7 @@ static inline int winnings(double* p_a, double* p_b, double* Pool, double* win, 
     *p_b = fmax(MR, *p_b - diff);
         } else if (win == p_b) {
     diff *= 1 - D;
-                *p_a = fmax(MR, *p_a - diff);
+    *p_a = fmax(MR, *p_a - diff);
                 *Pool = fmax(MP, *Pool - (D*DC));
                 *p_b = fmax(MR, *p_b + (diff-(D*DC)));
         } else {
