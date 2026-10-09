@@ -34,7 +34,7 @@ ECOINT_NOTGOOD is equal to -1 and is what the program returns when it's well not
 
 1. RTFS (read the fucking source)
 
-2. Include the header (or compile the .a or .so for usage, go to Usage (.a/.so) for that)
+2. Include the header (or compile to .a or .so for usage, go to Usage (.a/.so) for that)
 ```C
 #include "ecoint.h"
 ```
@@ -66,7 +66,7 @@ Note from developer: winnings returns the status code (if it's 0 it ran successf
 
 # Usage (.a/.so)
 
-this section is for compiling ecoint to .a or .so to be used dynamically or with ffi (like JNI or cffi)
+this section is instructions for compiling ecoint to .a or .so to be used dynamically or with ffi (like JNI or cffi)
 1. run the commands below
 ```shell
 # for all types
