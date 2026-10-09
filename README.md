@@ -34,7 +34,7 @@ ECOINT_NOTGOOD is equal to -1 and is what the program returns when it's well not
 
 1. RTFS (read the fucking source)
 
-2. Include the header (duh)
+2. Include the header (or compile the .a or .so for usage, go to Usage (.a/.so) for that)
 ```C
 #include "ecoint.h"
 ```
@@ -64,8 +64,25 @@ Note from developer: winnings returns the status code (if it's 0 it ran successf
 
 4. Compile the code
 
+# Usage (.a/.so)
+
+this section is for compiling ecoint to .a or .so to be used dynamically or with ffi (like JNI or cffi)
+1. run the commands below
+```shell
+# for all types
+meson setup build
+# for .a only
+meson setup build -Dlibrary_type=static
+# for .so/.dll/.dylib only
+meson setup build -Dlibrary_type=dynamic
+
+# build
+ninja -C build
+```
+
 # License
 
-this code uses MPL-2.0
+This project is licensed under the GNU Lesser General Public License v2.1 only
+(LGPL-2.1-only). See the LICENSE file for the full license text.
 
 [LICENSE](LICENSE)

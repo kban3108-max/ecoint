@@ -1,0 +1,7 @@
+option(
+  'library_type',
+  type: 'combo',
+  choices: ['static', 'dynamic', 'all'],
+  value: 'all',
+  description: 'Which library flavours to build',
+)

@@ -1,9 +1,22 @@
-/* This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+/*
+ * ecoint - macroeconomy like rating system
+ * Copyright (C) 2026 kban3108-max
  *
- * Copyright (c) 2026 kban3108-max
-*/
+ * This file is part of ecoint.
+ *
+ * ecoint is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation, version 2.1 only.
+ *
+ * ecoint is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with ecoint. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #ifndef ECOINT_ANTIOS_H
 #define ECOINT_ANTIOS_H
 
@@ -12,7 +25,7 @@
 
 #include <stdbool.h>
 
-static inline double fmax(int limiter, double num)
+static inline double efmax(int limiter, double num)
 {
     if (num < limiter)
         return limiter;
@@ -20,7 +33,7 @@ static inline double fmax(int limiter, double num)
     return num;
 }
 
-static inline double fabs(double num) {
+static inline double efabs(double num) {
     if (num < 0)
         return num * -1;
     return num;
@@ -37,21 +50,21 @@ static inline double getelo(double K, double M, double P, double Pool, double T,
 
 static inline bool checkthres(double K, double M, double P, double Pool, double* Tthres) {
 		double tmp = (Pool / K / M / P) * *Tthres;
-		return fabs(tmp-P) < 1e-9;
+		return efabs(tmp-P) < 1e-9;
 }
 
 static inline int winnings(double* p_a, double* p_b, double* Pool, double* win, double K, double M, double P, double D, double DC, int MR, int MP, double* Tthres) {
-		double diff = fabs(*p_a - *p_b);
+		double diff = efabs(*p_a - *p_b);
 		if (win == p_a) {
 	diff *= 1 - D;
-	*p_a = fmax(MR, *p_a + (diff-(D*DC)));
-	*Pool = fmax(MP, *Pool - (D*DC));
-	*p_b = fmax(MR, *p_b - diff);
+	*p_a = efmax(MR, *p_a + (diff-(D*DC)));
+	*Pool = efmax(MP, *Pool - (D*DC));
+	*p_b = efmax(MR, *p_b - diff);
 		} else if (win == p_b) {
 	diff *= 1 - D;
-				*p_a = fmax(MR, *p_a - diff);
-				*Pool = fmax(MP, *Pool - (D*DC));
-				*p_b = fmax(MR, *p_b + (diff-(D*DC)));
+				*p_a = efmax(MR, *p_a - diff);
+				*Pool = efmax(MP, *Pool - (D*DC));
+				*p_b = efmax(MR, *p_b + (diff-(D*DC)));
 		} else {
 				return ECOINT_NOTGOOD;
 		}
