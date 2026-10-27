@@ -1,3 +1,5 @@
+![ecoint](./ecoint.jpg)
+
 # ecoint - EConomic pOINT
 
 ecoint is a project that takes macroeconomics and turns it into a rating system
