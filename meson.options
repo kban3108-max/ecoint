@@ -3,5 +3,5 @@ option(
   type: 'combo',
   choices: ['static', 'dynamic', 'all'],
   value: 'all',
-  description: 'Which library flavours to build',
+  description: 'ecoint',
 )
