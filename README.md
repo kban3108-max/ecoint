@@ -82,6 +82,10 @@ meson setup build -Dlibrary_type=dynamic
 ninja -C build
 ```
 
+# More Info
+
+for more information on the mathematics [click here](ecoint.pdf)
+
 # License
 
 This project is licensed under the GNU Lesser General Public License v2.1 only
