@@ -1,0 +1,302 @@
+\documentclass{article}
+\usepackage{xcolor}
+\usepackage{graphicx} 
+\begin{document}
+\noindent\includegraphics[width=\textwidth]{ecoint.jpg}
+
+ecoint official documentation (in LaTeX)
+
+This documentation will be split into 4 parts (one part per function)
+
+\begin{enumerate}
+  \item getelo (yes it isn't elo but naming)
+  \item getthres
+  \item checkthres
+  \item winnings
+\end{enumerate}
+
+\colorbox{black!25}{Note: $\Delta$ will be used as output in this documentation} 
+
+\ 
+
+\section{Part 1: getelo}
+
+$ $
+
+getelo is defined as:
+
+\ 
+
+$\Delta = \frac{Pool}{KMP} T$
+
+\ 
+
+\colorbox{black!25}{Note: pretty pls don't plug in 0}
+
+\ 
+
+or more explicitly 
+
+\ 
+
+$\Delta = \frac{Pool}{K \cdot M \cdot P} T$
+
+\ 
+
+K as a controller
+
+\ 
+
+M also as a controller
+
+\ 
+
+P is defined as the players current points
+
+\ 
+
+and T is yet another controller (lots of them I know)
+
+\ 
+
+Pool is the total amount of points in the system (the name stands for economic point and this is the part that makes it economic)
+
+\ 
+
+let's plug in some values (for example K = 5, M = 6, P = 150, Pool = 10000, T = 5)
+
+\ 
+
+$\Delta = \frac{10,000}{5 \cdot 6 \cdot 150} 5$
+
+\ 
+
+first collapse the fraction
+
+$\Delta = \frac{10,000}{30 \cdot 150} 5$
+
+\ 
+
+$\Delta = \frac{10,000}{4,500} 5$
+
+\ 
+
+$\Delta \approx 22.2222222222 \cdot 5$
+
+\ 
+
+then solve it
+
+\ 
+
+$\Delta \approx 111.111111111$
+
+\ 
+
+we get 111.111111111 as the players new elo or ecopoints or whatever (can be rounded)
+
+\ 
+
+now you may ask "but kban3108-max how do we add a property no one will probably ever use"
+
+\section{Part 2: getthres}
+
+$ $
+
+getthres is defined as
+
+\ 
+
+$\frac{{P^2}KM}{Pool}$
+
+\ 
+
+it gets the threshold for T (defined as $T_{thres}$)
+
+\ 
+
+in getelo if $T = T_{thres}$ then $\Delta = P$ 
+
+\ 
+
+\colorbox{black!25}{Note: I love this part}
+
+\ 
+
+because if $T = T_{thres}$ the equation becomes
+
+\ 
+
+$\Delta = \frac{Pool}{KMP} \cdot \frac{{P^2}KM}{Pool}$
+
+\ 
+
+or explicitly 
+
+\ 
+
+$\Delta = \frac{Pool}{K \cdot M \cdot P} \cdot \frac{{P^2}\cdot K \cdot M}{Pool}$
+
+\ 
+
+cancel out K M and Pool and the power ($\frac{P^2}{P} = P$ aka common factor shii) 
+
+\ 
+
+$\Delta = P$
+
+\ 
+
+now you may ask "but kban3108-max how do we check the threshold hasn't been modified"
+
+\section{Part 3: checkthres}
+
+$ $
+
+checkthres is defined as
+
+\ 
+
+$\left|\frac{Pool}{KMP}T_{thres}-P\right| < 10^{-9}$
+
+\ 
+
+(or explicitly)
+
+\ 
+
+$\left|\frac{Pool}{K \cdot M \cdot P}T_{thres}-P\right| < 10^{-9}$
+
+\ 
+
+and checks whether $T_{thres}$ is correct by checking  $\frac{Pool}{KMP} T_{thres} = P$ code style
+
+\ 
+
+checkthres returns true if it's correct and false if it isn't 
+
+\ 
+
+\colorbox{black!25}{Note: it doesn't overwrite $T_{thres}$ to be correct if it's false, that's on you}
+
+\  
+
+now you may ask "but kban3108-max this is a rating system wheres the rating function?"
+
+\section{Part 4: winnings}
+
+$ $
+
+winnings is one hell of a function so get your thinking caps on
+
+\ 
+
+there's no definition since it's multiple equations 
+
+\ 
+
+now let's define some things
+
+\ 
+
+$p_a$ is player A's rating 
+
+\ 
+
+$p_b$ is Player B's rating
+
+\ 
+
+D is a controller
+
+\ 
+
+DC is a controller too (but it controls D)
+
+\ 
+
+MR is the minimum permitted rating 
+
+\ 
+
+MP is the minimum permitted pool amount
+
+\ 
+
+$\Theta'$ is used to represent change in $\Theta$
+
+\ 
+
+\colorbox{black!25}{Note: $\Theta$ is used as an example here, there is no $\Theta$ below}
+
+\ 
+
+so the first equation is
+
+\ 
+
+$\Delta = \left| p_a - p_b \right|$
+
+\ 
+
+then
+
+\ 
+
+$\Delta' = \Delta (1 - D)$
+
+\ 
+
+this can all be simplified to
+
+\ 
+
+$\Delta = \left| p_a - p_b \right| (1 - D)$
+
+\ 
+
+then the distribution
+
+\ 
+
+winner:
+
+\ 
+
+$p'_{winner} = \max(MR, p_winner + \Delta - (D \cdot DC))$
+
+\ 
+
+loser:
+
+\ 
+
+$p'_{loser} = \max(MR, p_loser - \Delta)$
+
+\ 
+
+pool:
+
+\ 
+
+$Pool' = \max(MP, Pool - (D \cdot DC))$
+
+\ 
+
+\colorbox{black!25}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{Note: winnings does pointer mutation (it mutates Pool $p_a$ and $p_b$ and $T_{thres}$ 
+(well every function mutates $T_{thres}$, for more info go to section "The End" and read Final Note)) so keep that in mind}}
+
+\section{The End}
+
+$ $
+
+and that's ecoint documentation (in LaTeX)
+
+\ 
+
+\colorbox{black!25}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{Final Note: all functions except checkthres
+mutate your passed $T_{thres}$ using getthres so keep that in mind}}
+
+
+\end{document}
+
